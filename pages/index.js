@@ -11,10 +11,9 @@ import Login from './components/Login'
 export default function Home() {
   return (
     
-    <div className=" w-full h-full bg-gradient-to-br from-purple-200 via-pink-100-100 to-white">
+    <div className=" w-full h-full bg-gradient-to-br from-purple-200 via-pink-100-100 to-white overscroll-y-none  overflow-y-none">
 
       <AuthContextProvider>
-      
         <Navbar />
         <Signup />
       </AuthContextProvider>

@@ -4,15 +4,20 @@ import Link from 'next/link'
 import { UserAuth } from '../../context/AuthContext'
 import { useState } from 'react'
 import { GithubLoginButton, GoogleLoginButton } from 'react-social-login-buttons'
-import { data } from '../../assets/constants/metadata'
+import { data, clients } from '../../assets/constants/metadata'
 import { AiFillCheckCircle } from 'react-icons/ai'
-
-//https://sign-up-9d172.firebaseapp.com/__/auth/handler
+import Image from 'next/image'
+import airbnb from "../../assets/airbnb.png"
+import binance from "../../assets/binance.png"
+import dropbox from "../../assets/dropbox.png"
+import coinbase from "../../assets/coinbase.png"
+import { useRouter } from 'next/router'
 
 const Signup = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { user, signUp, googleSignIn, githubSignIn } = UserAuth()
+    const router = useRouter()
 
     const handleGoogleSignIn = async () => {
         try {
@@ -34,6 +39,9 @@ const Signup = () => {
         e.preventDefault()
         try {
             await signUp(email, password)
+            router.push('/components/Login')
+           
+
            
         } catch (error) {
             console.log(error)   
@@ -50,7 +58,7 @@ const Signup = () => {
 </h2>
                 {
                     data.map((item) => (
-                        <div className="flex flex-col">
+                        <div key={item.id} className="flex flex-col">
                             <div className="flex flex-row">
                                 <AiFillCheckCircle size={20} className="text-black mt-1" />
                                 <p className="px-3 text-black text-lg font-medium">{item.header}</p>
@@ -58,9 +66,17 @@ const Signup = () => {
 
                             <p className="px-[2rem] mt-4 mb-3 text-lg font-light text-slate-600">{item.content1}</p>
                             <p className="px-[2rem] font-light text-slate-600 mb-12 text-lg">{item.content2}</p>
+
+
                         </div>
                     ))
                 }
+                            <div className="py-4 flex flex-row gap-10 justify-center items-center px-4 md:px-2 lg:px-0">
+                               <Image src={binance} className="mt-2" width={100} height={100}  />
+                               <Image src={coinbase} width={100} height={100} />
+                               <Image src={dropbox} width={100} height={100}  />
+                               <Image src={airbnb} width={100} height={100} />
+                            </div>
             </div>
         </div>
 
@@ -91,7 +107,7 @@ const Signup = () => {
                     className="bg-gray-100 rounded-lg w-96 h-10 px-10 outline-none text-gray-500" />
 
                     <Link 
-                    href="/"
+                    href="/components/Login"
                     key="login">
                         <button 
                         onClick={handleSubmit}
@@ -103,7 +119,7 @@ const Signup = () => {
 
             
             <p className="text-gray-400 mt-5">or</p>
-            <div className="py-5 rounded-md flex flex-row gap-4">
+            <div className="py-5 rounded-md flex flex-row gap-4 w-[460px] ">
                 <GoogleLoginButton onClick={handleGoogleSignIn} className="" />
                 <GithubLoginButton onClick={handleGithubSignIn} size='' />
             </div>

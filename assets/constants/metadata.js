@@ -1,3 +1,8 @@
+import binance from "../binance.png"
+import coinbase from "../coinbase.png"
+import airbnb from "../airbnb.png"
+import dropbox from "../dropbox.png"
+
 export const data = [
     {
         id: 1,
@@ -19,3 +24,22 @@ export const data = [
     },
 ]
 
+
+export const clients = [
+    {
+        id: "client-1",
+        logo: binance,
+    },
+    {
+        id: "client-2",
+        logo: coinbase,
+    },
+    {
+        id: "client-3",
+        logo: airbnb,
+    },
+    {
+        id: "client-4",
+        logo: dropbox,
+    },
+]
