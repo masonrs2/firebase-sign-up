@@ -1,16 +1,16 @@
 import React from 'react'
 import GoogleButton from 'react-google-button'
 import Link from 'next/link'
-import { UserAuth } from '../../context/AuthContext'
+import { UserAuth } from '../context/AuthContext'
 import { useState } from 'react'
 import { GithubLoginButton, GoogleLoginButton } from 'react-social-login-buttons'
-import { data, clients } from '../../assets/constants/metadata'
+import { data, clients } from '../assets/constants/metadata'
 import { AiFillCheckCircle } from 'react-icons/ai'
 import Image from 'next/image'
-import airbnb from "../../assets/airbnb.png"
-import binance from "../../assets/binance.png"
-import dropbox from "../../assets/dropbox.png"
-import coinbase from "../../assets/coinbase.png"
+import airbnb from "../assets/airbnb.png"
+import binance from "../assets/binance.png"
+import dropbox from "../assets/dropbox.png"
+import coinbase from "../assets/coinbase.png"
 import { useRouter } from 'next/router'
 
 const Signup = () => {
@@ -22,6 +22,7 @@ const Signup = () => {
     const handleGoogleSignIn = async () => {
         try {
             await googleSignIn()
+            router.push('/Pages/Login')
         } catch (error) {
             console.log(error)
         }
@@ -30,6 +31,7 @@ const Signup = () => {
     const handleGithubSignIn = async () => {
         try {
             await githubSignIn()
+            router.push('/Pages/Login')
         } catch (error) {
             console.log(error)
         }
@@ -39,7 +41,7 @@ const Signup = () => {
         e.preventDefault()
         try {
             await signUp(email, password)
-            router.push('/components/Login')
+            router.push('/Pages/Login')
            
 
            
